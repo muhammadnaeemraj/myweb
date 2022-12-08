@@ -1,15 +1,17 @@
-import React from "react";
-import { Media } from "reactstrap";
+import React, { Component } from "react";
+import "bootstrap";
+import { ListGroup, ListGroupItem } from "reactstrap";
+import "./MenuComp.css";
 
-class Menu extends React.Component {
+class Menu extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       dishes: [
         {
           id: 0,
           name: "Uthappizza",
-          image: "assets/images/uthappizza.png",
+          image: "asserts/images/uthappizza.png",
           category: "mains",
           label: "Hot",
           price: "4.99",
@@ -19,7 +21,7 @@ class Menu extends React.Component {
         {
           id: 1,
           name: "Zucchipakoda",
-          image: "assets/images/zucchipakoda.png",
+          image: "asserts/images/zucchipakoda.png",
           category: "appetizer",
           label: "",
           price: "1.99",
@@ -29,7 +31,7 @@ class Menu extends React.Component {
         {
           id: 2,
           name: "Vadonut",
-          image: "assets/images/vadonut.png",
+          image: "asserts/images/vadonut.png",
           category: "appetizer",
           label: "New",
           price: "1.99",
@@ -39,7 +41,7 @@ class Menu extends React.Component {
         {
           id: 3,
           name: "ElaiCheese Cake",
-          image: "assets/images/elaicheesecake.png",
+          image: "asserts/images/elaicheesecake.png",
           category: "dessert",
           label: "",
           price: "2.99",
@@ -49,14 +51,31 @@ class Menu extends React.Component {
       ],
     };
   }
+
   render() {
     const menu = this.state.dishes.map((dish) => {
       return (
-          <div key={dish.id} className="container">
-            <Media></Media>
-          </div>
+        <div key={dish.id} className="col-12 mt-5">
+          <ListGroup>
+            <ListGroupItem className="list">
+              <img src={dish.image} alt={dish.name} />
+              <div className="detail">
+                <h2 className="heading">{dish.name}</h2>
+                <p className="discription">{dish.description}</p>
+              </div>
+            </ListGroupItem>
+          </ListGroup>
+        </div>
       );
     });
+
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="menu">{menu}</div>
+        </div>
+      </div>
+    );
   }
 }
 

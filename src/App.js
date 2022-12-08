@@ -1,5 +1,6 @@
-import "./App.css";
+// import "./App.css";
 import { Navbar, NavbarBrand } from "reactstrap";
+import Menu from "./components/Menucomp";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
             </NavbarBrand>
           </div>
         </Navbar>
+        <Menu />
       </div>
     </>
   );
