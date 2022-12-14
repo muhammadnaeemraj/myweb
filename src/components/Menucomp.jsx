@@ -14,36 +14,56 @@ import {
 
 const Menu = () => {
   const [dish, setDish] = useState(dishes);
-  const [disc, setDisc] = useState(null);
+  const [selectedDish, setSelectedDish] = useState(null);
+
+  // will render this funtion on onClick method
+  function renderDish(dish) {
+    if (dish != null)
+      return (
+        <Card>
+          <CardImg top src={dish.image} alt={dish.name} />
+          <CardBody>
+            <CardTitle>
+              <h2>{dish.name}</h2>
+            </CardTitle>
+            <CardText>{dish.description}</CardText>
+          </CardBody>
+        </Card>
+      );
+    else return <div></div>;
+  }
+
+  // all dishes
   const menu = dish.map((d) => {
     return (
-      <div key={d.id} className="col-12 col-mt-5 m-2">
+      <div key={d.id} className="col-12 m-2">
         <Card
           style={{
             width: "18rem",
           }}
-          onClick={() => setDisc(d.description)}
+          onClick={() => {
+            setSelectedDish(d);
+          }} //will change the state of setSelected => (null to dish)
         >
           <img src={d.image} alt={d.name} />
           <CardBody>
             <CardImgOverlay>
               <h5 className="heading">{d.name}</h5>
             </CardImgOverlay>
-            <CardTitle>
-              <h2 className="heading">{d.name}</h2>
-            </CardTitle>
-            <CardText>
-              <p className="discription">{disc}</p>
-            </CardText>
           </CardBody>
         </Card>
       </div>
     );
   });
+
+  // Main retun function
   return (
     <div className="container">
       <div className="row">
         <div className="menu col">{menu}</div>
+      </div>
+      <div className="row">
+        <div className="col-12 col-md-5 m-1">{renderDish(selectedDish)}</div>
       </div>
     </div>
   );
